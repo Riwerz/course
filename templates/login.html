@@ -1,0 +1,30 @@
+{% extends "wrapper.html" %}
+{% include "navbar.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm4">
+            <h1 class="display-4">Вход</h1>
+            <form method="post">
+                {% csrf_token %}
+                 {% for field in form %}
+                    <div class="form-group row">
+                        <div class="col">
+                            {{field.label_tag}} <br>
+                            {{field}}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <p class="text-danger">{{error}}</p>
+                {% endfor %}
+                <p>Если вы здесь впервые, <a href="register">зарегистрируйтесь</a></p>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg">Войти</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+{% endblock %}

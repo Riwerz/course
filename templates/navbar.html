@@ -1,6 +1,3 @@
-{% extends "wrapper.html" %}
-
-{% block content %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="text-danger navbar-brand">Conspecto Patronum</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -13,6 +10,7 @@
                    <a class="nav-link" href="login">Войти</a>
                 </li>
                 <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Тема
@@ -22,6 +20,16 @@
                       <a class="dropdown-item">"Гуманитарная"</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Язык
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item">Русский</a>
+                      <a class="dropdown-item">Белорусский</a>
+                    </div>
+                </li>
             </ul>
         </div>
         <form class="form-inline">
@@ -29,4 +37,3 @@
             <button class="btn btn-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </nav>
-{% endblock %}
