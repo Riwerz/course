@@ -1,6 +1,7 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
-
+{% load social_auth_widget %}
+{% load staticfiles %}
 {% block content %}
     <div class="row">
         <div class="col-sm-4"></div>
@@ -19,7 +20,8 @@
                 {% for error in form.non_field_errors %}
                     <p class="text-danger">{{error}}</p>
                 {% endfor %}
-                <p>Если вы здесь впервые, <a href="register">зарегистрируйтесь</a></p>
+                {% social_auth_widget %}
+                <small>Если вы здесь впервые, <a href="register">зарегистрируйтесь</a></small>
                 <div class="col">
                     <button type="submit" class="btn btn-primary btn-lg">Войти</button>
                 </div>

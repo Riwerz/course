@@ -6,9 +6,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                   <a class="nav-link" href="login">Войти</a>
+                    <a class="nav-link" href="logout">{{ user.get_username }}</a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Войти</a>
+                </li>
+                {% endif %}
                 <li class="nav-item dropdown">
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

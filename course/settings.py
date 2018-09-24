@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rootApp',
+    'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -71,7 +73,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'course.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
+SOCIAL_AUTH_VK_OAUTH2_KEY = '6702176'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = '5pstUiFNW8NseZwUqqmv'
+FACEBOOK_APP_ID = '696381432507483'
+FACEBOOK_API_SECRET = '15afb0bbeb173aae12e8e875ffccc7a4'
+TWITTER_CONSUMER_KEY = 'G2wMq4KYpTmgZDcjg0EzQ'
+TWITTER_CONSUMER_SECRET = 'rGHMGIbOwIEpoxjXzOahc2KmvxY8h10DpZ90LwqEjec'
+LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_PROVIDERS = [
+    {'id': p[0], 'name': p[1], 'position': {'width': p[2][0], 'height': p[2][1], }}
+    for p in (
+        ('vk-oauth2', u'Войти через VK', (0, 0)),
+        ('facebook', u'Войти через Facebook', (0, -105)),
+        ('twitter', u'Войти через Twitter', (0, -140)),
+    )
+]
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -101,7 +125,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -121,8 +144,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'Riwerz'
-EMAIL_HOST_PASSWORD = 'e8646933E'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'Riwerz2@yandex.ru'
+EMAIL_HOST_PASSWORD = '8646933'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

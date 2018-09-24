@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 
 
-HOST_EMAIL = 'najibator228@gmail.com'
+HOST_EMAIL = 'Riwerz2@yandex.ru'
 
 
 def load_mainpage(request):
@@ -71,3 +71,8 @@ def activate(request, uidb64, token):
     else:
         message = 'Недействительная ссылка'
     return HttpResponse(message)
+
+
+def log_out(request):
+    logout(request)
+    return render(request, 'wrapper.html')
