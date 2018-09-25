@@ -1,5 +1,6 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
+{% load staticfiles %}
 
 {% block content %}
     <p class="h2 text-center">{{ user.get_full_name }}</p>
@@ -9,26 +10,26 @@
             <button type="button" class="btn btn-primary" id="block">Добавить</button>
         </div>
     </div>
-
-    <table class="table table-bordered">
-        <thead class="thead-light">
-            <th>
-                <input type="checkbox" id="select_all">
-            </th>
-            <th>Название</th>
-            <th>Тема</th>
-            <th></th>
-            <th></th>
+        <table class="table-sort table-sort-search">
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th class="table-sort">Название</th>
+                <th class="table-sort">Тема</th>
+            </tr>
         </thead>
-
         <tbody>
             <tr>
-                <td><input type="checkbox" id="select_all"></td>
+                <td><input type="checkbox"></td>
                 <td>Чеченские войны</td>
                 <td>История</td>
-                <td><a href="">Редактировать</a></td>
-                <td><a href="">Удалить</a></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Уравнение теплового баланса</td>
+                <td>Физика</td>
             </tr>
         </tbody>
     </table>
+
 {% endblock %}
