@@ -16,7 +16,11 @@ HOST_EMAIL = 'Riwerz2@yandex.ru'
 
 
 def load_mainpage(request):
-    return render(request, 'wrapper.html')
+    return render(request, 'mainpage.html')
+
+
+def load_profile(request):
+    return render(request, 'profile.html')
 
 
 def load_login(request):
@@ -75,4 +79,4 @@ def activate(request, uidb64, token):
 
 def log_out(request):
     logout(request)
-    return render(request, 'wrapper.html')
+    return render(request, 'mainpage.html')

@@ -1,0 +1,34 @@
+{% extends "wrapper.html" %}
+{% include "navbar.html" %}
+
+{% block content %}
+    <p class="h2 text-center">{{ user.get_full_name }}</p>
+    <div class="container-fluid">Информация о пользователе</div>
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-primary" id="block">Добавить</button>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <th>
+                <input type="checkbox" id="select_all">
+            </th>
+            <th>Название</th>
+            <th>Тема</th>
+            <th></th>
+            <th></th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><input type="checkbox" id="select_all"></td>
+                <td>Чеченские войны</td>
+                <td>История</td>
+                <td><a href="">Редактировать</a></td>
+                <td><a href="">Удалить</a></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
