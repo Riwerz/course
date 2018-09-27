@@ -43,6 +43,8 @@ def load_signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
+            user.first_name = request.POST['name']
+            user.last_name = request.POST['surname']
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
@@ -54,7 +56,7 @@ def load_signup(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
-            send_mail(mail_subject, message, HOST_EMAIL, [to_email])
+            send_mail(mail_subject, message, HOST_EMAIL, [to_email], fail_silently=False)
             return render(request, 'email_confirm.html')
     else:
         form = SignupForm()
@@ -70,7 +72,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         message = 'Адрес электронной почти подтверждён'
     else:
         message = 'Недействительная ссылка'
