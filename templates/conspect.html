@@ -1,0 +1,23 @@
+{% extends "wrapper.html" %}
+{% include "navbar.html" %}
+
+{% block content %}
+    <p class="h2 text-center">Новый конспект</p> <hr/>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="container text-center">
+                {% for field in form %}
+                        <div class="form-group row">
+                            <div class="col">
+                                {{field}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                <input type="submit" class="btn btn-primary" value="Опубликовать">
+            </div>
+        </form>
+    </div>
+    {{ conspect.html }}
+
+{% endblock %}

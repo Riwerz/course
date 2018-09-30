@@ -10,9 +10,14 @@ from .tokens import account_activation_token
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from .forms import ConspectForm
 
 
 HOST_EMAIL = 'Riwerz2@yandex.ru'
+
+
+def load_conspect(request):
+    return render(request, 'conspect.html')
 
 
 def load_mainpage(request):
@@ -61,6 +66,20 @@ def load_signup(request):
     else:
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
+
+
+def publish_conspect(request):
+    if request.method == 'POST':
+        form = ConspectForm(request.POST)
+        if form.is_valid():
+            conspect = form.save(commit=False)
+            conspect.author = request.user
+            conspect.publish()
+            conspect.save()
+            return render(request, 'conspect.html', {'conspect': conspect})
+    else:
+        form = ConspectForm()
+    return render(request, 'conspect.html', {'form': form})
 
 
 def activate(request, uidb64, token):
