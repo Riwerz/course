@@ -325,7 +325,6 @@
           .css('left',tbodyPosition.left)
           .css('top',tbodyPosition.top);
 
-        tbody.prepend(searchEmpty);
         table.parent().append(search);
 
         // Make the empty cell the same height as the search element

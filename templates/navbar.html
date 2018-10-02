@@ -8,11 +8,11 @@
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="profile">Мой профиль</a>
+                    <a class="nav-link" href="/profile">Мой профиль</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="login">Войти</a>
+                    <a class="nav-link" href="/login">Войти</a>
                 </li>
                 {% endif %}
                 <li class="nav-item dropdown">
@@ -21,16 +21,16 @@
                       Настройки
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item">"Математическая" тема</a>
-                      <a class="dropdown-item">"Гуманитарная" тема</a>
+                      <a href="#" class="dropdown-item">"Математическая" тема</a>
+                      <a href="#" class="dropdown-item">"Гуманитарная" тема</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item">Русский язык</a>
-                      <a class="dropdown-item">Белорусский язык</a>
+                      <a href="#" class="dropdown-item">Русский язык</a>
+                      <a href="#" class="dropdown-item">Белорусский язык</a>
                     </div>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="logout">Выйти</a>
+                    <a class="nav-link" href="/logout">Выйти</a>
                 </li>
                 {% endif %}
             </ul>

@@ -9,23 +9,28 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .forms import ConspectForm
+from .models import Conspect
 
 
 HOST_EMAIL = 'Riwerz2@yandex.ru'
 
 
 def load_conspect(request):
-    return render(request, 'conspect.html')
+    return render(request, 'conspect_create.html')
 
 
 def load_mainpage(request):
     return render(request, 'mainpage.html')
 
 
+def conspect_browse(request):
+    return render(request, 'conspect_browse.html', {'conspect': Conspect.objects.get(pk=request.GET['pk'])})
+
+
 def load_profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'profile.html', {'conspects': Conspect.objects.filter(author=request.user)})
 
 
 def load_login(request):
@@ -76,10 +81,32 @@ def publish_conspect(request):
             conspect.author = request.user
             conspect.publish()
             conspect.save()
-            return render(request, 'conspect.html', {'conspect': conspect})
+            return HttpResponseRedirect('profile')
     else:
         form = ConspectForm()
-    return render(request, 'conspect.html', {'form': form})
+    return render(request, 'conspect_create.html', {'form': form})
+
+
+def conspect_entries(request):
+    return render(request, 'conspect_table.html', {'conspects': Conspect.objects.filter(author=request.user)})
+
+
+def conspect_delete(request):
+    id = request.POST['id']
+    Conspect.objects.filter(pk=id).delete()
+    return JsonResponse({})
+
+
+def conspect_edit(request, id):
+    post = Conspect.objects.get(pk=id)
+    if request.method == 'POST':
+        form = ConspectForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/profile')
+    else:
+        form = ConspectForm(instance=post)
+    return render(request, 'conspect_create.html', {'form': form})
 
 
 def activate(request, uidb64, token):

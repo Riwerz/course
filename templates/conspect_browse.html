@@ -1,0 +1,14 @@
+{% extends "wrapper.html" %}
+{% include "navbar.html" %}
+
+{% block content %}
+    <div class="container">
+        <p class="h2 text-center">{{ conspect.title }}</p> <hr/>
+        {{ conspect.html_field | safe }}
+        <hr/>
+        <span>Теги:</span>
+        <a href="#" class="badge badge-success">{{ conspect.tags }} </a>
+        <p class="text-center text-sm">Оценить</p>
+        <p class="h2 text-center">Комментарии</p>
+    </div>
+{% endblock %}
