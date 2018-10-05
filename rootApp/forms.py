@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Conspect
+from taggit.managers import TaggableManager
+from .subjects import *
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(max_length=200, help_text='Required')
@@ -14,10 +16,11 @@ class SignupForm(UserCreationForm):
 
 class ConspectForm(forms.ModelForm):
     title = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Заголовок', 'autocomplete': 'off'}))
+    subject = forms.ChoiceField(choices = SUBJECT_CHOICES, widget=forms.Select())
     description = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'placeholder': 'Краткое описание', 'autocomplete': 'off'}))
     text = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Текст'}))
-    tags = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Теги', 'autocomplete': 'off'}))
+    tags = TaggableManager()
 
     class Meta:
         model = Conspect
-        fields = ('title', 'description', 'text', 'tags')
+        fields = ('title', 'subject','description', 'text', 'tags')

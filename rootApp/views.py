@@ -22,7 +22,7 @@ def load_conspect(request):
 
 
 def load_mainpage(request):
-    return render(request, 'mainpage.html')
+    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10]})
 
 
 def conspect_browse(request):
@@ -81,6 +81,7 @@ def publish_conspect(request):
             conspect.author = request.user
             conspect.publish()
             conspect.save()
+            form.save_m2m()
             return HttpResponseRedirect('profile')
     else:
         form = ConspectForm()
@@ -127,4 +128,8 @@ def activate(request, uidb64, token):
 
 def log_out(request):
     logout(request)
-    return render(request, 'mainpage.html')
+    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10]})
+
+def tag(request, tag):
+    conspects = Conspect.objects.filter(tags__name=tag)
+    return render(request, 'search.html', {'conspects': conspects, 'tag': tag})

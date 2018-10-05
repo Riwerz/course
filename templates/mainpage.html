@@ -3,6 +3,17 @@
 
 {% block content %}
     <p class="h2 text-center"> Облако с тегами </p> <hr />
-    <p class="h2 text-center"> Недавно загруженные конспекты </p> <hr />
+    <p class="h2 text-center"> Недавно загруженные конспекты </p>
+    <div class="d-flex flex-row">
+        {% for conspect in conspects_latest %}
+            <div class="card text-center">
+                    <div class="card-body">
+                        <a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
+                        <small>Автор: {{ conspect.author.get_full_name }}</small> <br/>
+                        <small>{{ conspect.published_date }}</small>
+                    </div>
+            </div>
+        {% endfor %}
+    </div>
     <p class="h2 text-center"> Топ конспектов </p> <hr />
 {% endblock %}
