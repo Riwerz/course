@@ -1,17 +1,18 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
-
+{% load ratings %}
 {% block content %}
     <div class="container">
-        <p class="h2 text-center">{{ conspect.title }}</p> <hr/>
+        <p class="h2 text-center">{{ conspect.title }}</p>
+        <div class="text-center">
+            {% ratings conspect %}
+        </div> <hr/>
         {{ conspect.html_field | safe }}
         <hr/>
         <span>Теги:</span>
         {% for tag in conspect.tags.all %}
             <a href="/tag/{{ tag }}" class="badge badge-info">{{ tag }}</a>
         {% endfor %}
-       <!-- <p class="badge">{{ conspect.tags.all|join:", " }} </p> -->
-        <p class="text-center text-sm">Оценить</p>
         <p class="h2 text-center">Комментарии</p>
     </div>
 {% endblock %}

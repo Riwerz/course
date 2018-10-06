@@ -2,7 +2,7 @@
 {% include "navbar.html" %}
 
 {% block content %}
-    <p class="h5 text-center">Результаты поиска по тегу: <span class="badge badge-info">{{ tag }}</span></p>
+    <p class="h5 text-center">Конспекты с тегом: <span class="badge badge-info">{{ tag }}</span></p>
     <div class="container">
            {% for conspect in conspects %}
                <div class="card text-center">

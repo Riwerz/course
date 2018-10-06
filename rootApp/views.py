@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .forms import ConspectForm
+from taggit.models import Tag
 from .models import Conspect
 
 
@@ -22,7 +23,9 @@ def load_conspect(request):
 
 
 def load_mainpage(request):
-    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10]})
+    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10],
+                                             'conspects_best': Conspect.objects.all().filter(ratings__isnull=False).order_by('-ratings__average')[:10],
+                                             'tags_all': Tag.objects.all()})
 
 
 def conspect_browse(request):
@@ -128,7 +131,8 @@ def activate(request, uidb64, token):
 
 def log_out(request):
     logout(request)
-    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10]})
+    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10],
+                                             'conspects_best': Conspect.objects.all().filter(ratings__isnull=False).order_by('-ratings__average')[:10]})
 
 def tag(request, tag):
     conspects = Conspect.objects.filter(tags__name=tag)

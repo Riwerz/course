@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from markdown import markdown
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 from taggit.managers import TaggableManager
 from .subjects import *
 
@@ -11,8 +13,7 @@ class Conspect(models.Model):
     description = models.CharField(max_length=200)
     text = models.TextField()
     tags = TaggableManager()
-    raters = models.CharField(max_length=5000)
-    average_rating = models.FloatField(blank=True, null=True)
+    ratings = GenericRelation(Rating, related_query_name='conspects')
     published_date = models.DateTimeField(blank=True, null=True)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     html_field = models.TextField(editable=False)
