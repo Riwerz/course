@@ -3,7 +3,7 @@
     <tr>
         <td><a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a></td>
         <td>{{ conspect.get_subject }}</td>
-        <td><a href="{% url 'conspect_edit'  id=conspect.pk %}"><i class="fa fa-edit"></i></a></td>
+        <td><a href="{% url "conspect_edit"  id=conspect.pk %}"><i class="fa fa-edit"></i></a></td>
         <td><a id="delete_{{ conspect.pk }}"><i class="fa fa-trash"></i></a></td>
     </tr>
 {% endfor %}

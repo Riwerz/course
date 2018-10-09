@@ -1,3 +1,4 @@
+{% load i18n %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand btn btn-danger" href="/">Conspecto Patronum</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -8,35 +9,35 @@
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Мой профиль</a>
+                    <a class="nav-link" href="/profile"><i class="fa fa-2x fa-user"></i></a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Войти</a>
+                    <a class="nav-link" href="/login"><i class="fa fa-2x fa-sign-in-alt"></i></a>
                 </li>
                 {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Настройки
+                      <i class="fa fa-2x fa-cog"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a href="#" class="dropdown-item">"Математическая" тема</a>
-                      <a href="#" class="dropdown-item">"Гуманитарная" тема</a>
+                      <a href="#" class="dropdown-item">{% trans '"Математическая" тема' %}</a>
+                      <a href="#" class="dropdown-item">{% trans '"Гуманитарная" тема' %}</a>
                       <div class="dropdown-divider"></div>
-                      <a href="#" class="dropdown-item">Русский язык</a>
-                      <a href="#" class="dropdown-item">Белорусский язык</a>
+                      <a href="#" class="dropdown-item">{% trans "Русский язык" %}</a>
+                      <a href="#" class="dropdown-item">{% trans "Белорусский язык" %}</a>
                     </div>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Выйти</a>
+                    <a class="nav-link" href="/logout"><i class="fa fa-2x fa-sign-out-alt"></i></a>
                 </li>
                 {% endif %}
             </ul>
         </div>
         <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Поиск</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="{% trans 'Поиск' %}" aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
         </form>
     </nav>

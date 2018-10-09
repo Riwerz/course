@@ -1,6 +1,7 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
 {% load ratings %}
+{% load i18n %}
 {% block content %}
     <div class="container">
         <p class="h2 text-center">{{ conspect.title }}</p>
@@ -9,10 +10,10 @@
         </div> <hr/>
         {{ conspect.html_field | safe }}
         <hr/>
-        <span>Теги:</span>
+        <span>{% trans "Теги" %}:</span>
         {% for tag in conspect.tags.all %}
             <a href="/tag/{{ tag }}" class="badge badge-info">{{ tag }}</a>
         {% endfor %}
-        <p class="h2 text-center">Комментарии</p>
+        <p class="h2 text-center">{% trans "Комментарии" %}</p>
     </div>
 {% endblock %}

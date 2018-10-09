@@ -1,6 +1,6 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
-
+{% load i18n %}
 {% block content %}
     <div class="row">
         <div class="col-sm-4"></div>
@@ -11,7 +11,7 @@
                 {% for field in form %}
                     <div class="form-group row">
                         <div class="col">
-                            {{field.label_tag}} <br>
+                            {% trans field.label_tag %} <br>
                             {{field}}
                             {% for error in field.errors %}
                                 <p class="text-danger">{{error}}</p>
@@ -21,10 +21,10 @@
                 {% endfor %}
                 <div class="btn-group">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary btn-lg">Зарегистрироваться</button>
+                        <button type="submit" class="btn btn-primary btn-lg">{% trans "Зарегистрироваться" %}</button>
                     </div>
                     <div class="col">
-                         <a class="btn btn-secondary btn-lg" href="/">Отмена</a>
+                         <a class="btn btn-secondary btn-lg" href="/">{% trans "Отмена" %}</a>
                     </div>
                 </div>
             </form>

@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-09 00:50+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\course\settings.py:138
+msgid "Russian"
+msgstr ""
+
+#: .\course\settings.py:139
+msgid "Belarusian"
+msgstr ""
+
+#: .\templates\acc_active_email.html:3
+#, python-format
+msgid ""
+"\n"
+"    Здравствуйте, %(user.username)s!\n"
+"    Пожалуйста, перейдите по ссылке для подтверждения регистрации,\n"
+msgstr ""
+"\n"
+"    Прывiтанне, %(user.username)s!\n"
+"    Калi ласка, перайдзiце па спасылцы для пацверджання рэгiстрацыi,\n"
+
+#: .\templates\acc_active_email.html:7
+msgid "Ссылка"
+msgstr "Спасылка"
+
+#: .\templates\conspect_browse.html:13
+msgid "Теги"
+msgstr "Тэгi"
+
+#: .\templates\conspect_browse.html:17
+msgid "Комментарии"
+msgstr "Каментарыi"
+
+#: .\templates\conspect_create.html:5
+msgid "Новый конспект"
+msgstr "Новы канспект"
+
+#: .\templates\conspect_create.html:17
+msgid "Сохранить"
+msgstr "Захаваць"
+
+#: .\templates\email_confirm.html:5
+msgid "Для завершения регистрации подтвердите адрес электронной почты"
+msgstr "Для завяршэння рэгiстрацыi пацвердзiце адрас электроннай пошты"
+
+#: .\templates\login.html:10
+msgid "Вход"
+msgstr "Уваход"
+
+#: .\templates\login.html:25
+msgid "Если вы здесь впервые"
+msgstr "Калi вы тут упершыню"
+
+#: .\templates\login.html:25
+msgid "зарегистрируйтесь"
+msgstr "зарэгiструйцеся"
+
+#: .\templates\login.html:27
+msgid "Войти"
+msgstr "Увайсцi"
+
+#: .\templates\mainpage.html:10
+msgid "Недавно загруженные конспекты"
+msgstr "Нядауна загружаныя канспекты"
+
+#: .\templates\mainpage.html:16 .\templates\mainpage.html:28
+#: .\templates\search.html:11
+msgid "Автор"
+msgstr "Аўтар"
+
+#: .\templates\mainpage.html:22
+msgid "Топ конспектов"
+msgstr "Топ канспектаў"
+
+#: .\templates\mainpage.html:29
+msgid "Рейтинг"
+msgstr "Рэйтынг"
+
+#: .\templates\navbar.html:25
+msgid "\"Математическая\" тема"
+msgstr "\"Матэматычная\" тэма"
+
+#: .\templates\navbar.html:26
+msgid "\"Гуманитарная\" тема"
+msgstr "\"Гуманiтарная\" тэма"
+
+#: .\templates\navbar.html:28
+msgid "Русский язык"
+msgstr "Руская мова"
+
+#: .\templates\navbar.html:29
+msgid "Белорусский язык"
+msgstr "Беларуская мова"
+
+#: .\templates\navbar.html:40
+msgid "Поиск"
+msgstr "Пошук"
+
+#: .\templates\profile.html:9
+msgid "Личная информация"
+msgstr "Асабiстая iнфармацыя"
+
+#: .\templates\profile.html:12
+msgid "Мои конспекты"
+msgstr "Мае канспекты"
+
+#: .\templates\profile.html:13
+msgid "Добавить конспект"
+msgstr "Дадаць канспект"
+
+#: .\templates\profile.html:17
+msgid "Название"
+msgstr "Назва"
+
+#: .\templates\profile.html:18
+msgid "Тема"
+msgstr "Тэма"
+
+#: .\templates\profile.html:19
+msgid "Редактировать"
+msgstr "Рэдагаваць"
+
+#: .\templates\profile.html:20
+msgid "Удалить"
+msgstr "Выдалiць"
+
+#: .\templates\search.html:5
+msgid "Конспекты с тегом"
+msgstr "Канспекты з тэгам"
+
+#: .\templates\signup.html:24
+msgid "Зарегистрироваться"
+msgstr "Зарэгiстравацца"
+
+#: .\templates\signup.html:27
+msgid "Отмена"
+msgstr "Адмена"

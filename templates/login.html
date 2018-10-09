@@ -2,28 +2,29 @@
 {% include "navbar.html" %}
 {% load social_auth_widget %}
 {% load staticfiles %}
+{% load i18n %}
 {% block content %}
     <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm4">
-            <h1 class="display-4">Вход</h1>
+            <h1 class="display-4">{% trans "Вход" %}</h1>
             <form method="post">
                 {% csrf_token %}
                  {% for field in form %}
                     <div class="form-group row">
                         <div class="col">
-                            {{field.label_tag}} <br>
+                            {% trans field.label_tag %} <br>
                             {{field}}
                         </div>
                     </div>
                 {% endfor %}
                 {% for error in form.non_field_errors %}
-                    <p class="text-danger">{{error}}</p>
+                    <p class="text-danger">{% trans error %}</p>
                 {% endfor %}
                 {% social_auth_widget %}
-                <small>Если вы здесь впервые, <a href="register">зарегистрируйтесь</a></small>
+                <small>{% trans "Если вы здесь впервые"%}, <a href="register">{% trans "зарегистрируйтесь" %}</a></small>
                 <div class="col">
-                    <button type="submit" class="btn btn-primary btn-lg">Войти</button>
+                    <button type="submit" class="btn btn-primary btn-lg">{% trans "Войти" %}</button>
                 </div>
             </form>
         </div>

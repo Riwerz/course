@@ -1,32 +1,32 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
-
+{% load i18n %}
 {% block content %}
     <div class="container text-center">
         {% for tag in tags_all %}
             <a href="/tag/{{ tag }}" class="badge badge-info">{{ tag }}</a>
         {% endfor %}
     </div> <hr/>
-    <h1 class="text-center"><span class="badge badge-secondary"> Недавно загруженные конспекты </span></h1>
+    <h1 class="text-center"><span class="badge badge-secondary">{% trans "Недавно загруженные конспекты"  %}</span></h1>
     <div class="d-flex flex-row">
         {% for conspect in conspects_latest %}
             <div class="card text-center">
                     <div class="card-body">
                         <a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
-                        <small>Автор: {{ conspect.author.get_full_name }}</small> <br/>
+                        <small>{% trans "Автор" %}: {{ conspect.author.get_full_name }}</small> <br/>
                         <small>{{ conspect.published_date }}</small>
                     </div>
             </div>
         {% endfor %}
     </div> <hr/>
-    <h1 class="text-center"><span class="badge badge-secondary"> Топ конспектов </span></h1>
+    <h1 class="text-center"><span class="badge badge-secondary">{% trans "Топ конспектов" %} </span></h1>
     <div class="d-flex flex-row">
         {% for conspect in conspects_best %}
             <div class="card text-center">
                     <div class="card-body">
                         <a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
-                        <small>Автор: {{ conspect.author.get_full_name }}</small> <br/>
-                        <small>Рейтинг: {{ conspect.ratings.get.average }}</small>
+                        <small>{% trans "Автор" %}: {{ conspect.author.get_full_name }}</small> <br/>
+                        <small>{% trans "Рейтинг" %}: {{ conspect.ratings.get.average }}</small>
                     </div>
             </div>
         {% endfor %}

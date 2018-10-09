@@ -1,14 +1,14 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
-
+{% load i18n %}
 {% block content %}
-    <p class="h5 text-center">Конспекты с тегом: <span class="badge badge-info">{{ tag }}</span></p>
+    <p class="h5 text-center">{% trans "Конспекты с тегом" %}: <span class="badge badge-info">{{ tag }}</span></p>
     <div class="container">
            {% for conspect in conspects %}
                <div class="card text-center">
                     <div class="card-body">
                         <a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
-                        <small>Автор: {{ conspect.author.get_full_name }}</small>
+                        <small>{% trans "Автор" %}: {{ conspect.author.get_full_name }}</small>
                     </div>
                </div>
             {% endfor %}

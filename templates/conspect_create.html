@@ -1,8 +1,8 @@
 {% extends "wrapper.html" %}
 {% include "navbar.html" %}
-
+{% load i18n %}
 {% block content %}
-    <p class="h2 text-center">Новый конспект</p> <hr/>
+    <p class="h2 text-center">{% trans "Новый конспект"%}</p> <hr/>
     <div class="container">
         <form method="post">
             {% csrf_token %}
@@ -14,9 +14,8 @@
                             </div>
                         </div>
                     {% endfor %}
-                <input type="submit" class="btn btn-primary" value="Сохранить">
+                <input type="submit" class="btn btn-primary" value="{% trans "Сохранить" %}">
             </div>
         </form>
     </div>
-
 {% endblock %}
