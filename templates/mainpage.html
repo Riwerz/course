@@ -4,7 +4,7 @@
 {% block content %}
     <div class="container text-center">
         {% for tag in tags_all %}
-            <a href="/tag/{{ tag }}" class="badge badge-info">{{ tag }}</a>
+            <a href="/{{ LANGUAGE_CODE }}/tag/{{ tag }}" class="badge badge-info">{{ tag }}</a>
         {% endfor %}
     </div> <hr/>
     <h1 class="text-center"><span class="badge badge-secondary">{% trans "Недавно загруженные конспекты"  %}</span></h1>
@@ -12,7 +12,7 @@
         {% for conspect in conspects_latest %}
             <div class="card text-center">
                     <div class="card-body">
-                        <a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
+                        <a href="/{{ LANGUAGE_CODE }}/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
                         <small>{% trans "Автор" %}: {{ conspect.author.get_full_name }}</small> <br/>
                         <small>{{ conspect.published_date }}</small>
                     </div>
@@ -24,11 +24,13 @@
         {% for conspect in conspects_best %}
             <div class="card text-center">
                     <div class="card-body">
-                        <a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
+                        <a href="/{{ LANGUAGE_CODE }}/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
                         <small>{% trans "Автор" %}: {{ conspect.author.get_full_name }}</small> <br/>
                         <small>{% trans "Рейтинг" %}: {{ conspect.ratings.get.average }}</small>
                     </div>
             </div>
         {% endfor %}
     </div>
+
+
 {% endblock %}

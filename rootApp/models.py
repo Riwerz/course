@@ -11,7 +11,7 @@ class Conspect(models.Model):
     title = models.CharField(max_length=100)
     subject = models.IntegerField(choices=SUBJECT_CHOICES, default=0)
     description = models.CharField(max_length=200)
-    text = models.TextField()
+    body = models.TextField()
     tags = TaggableManager()
     ratings = GenericRelation(Rating, related_query_name='conspects')
     published_date = models.DateTimeField(blank=True, null=True)
@@ -33,5 +33,5 @@ class Conspect(models.Model):
 
 
     def save(self):
-        self.html_field = markdown(self.text)
+        self.html_field = markdown(self.body)
         super(Conspect, self).save()

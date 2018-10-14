@@ -315,7 +315,7 @@
       if (table.hasClass('table-sort-search')) {
         var colspan       = table.find('thead th').length;
         var searchEmpty   = $('<tr><td class="table-sort-search-empty" colspan='+colspan+'></td></tr>');
-        var search        = $('<div class="container-fluid table-sort-search-container"><input class="table-sort-search-input" type="text" placeholder="Search..."></div>');
+        var search        = $('<div class="container-fluid table-sort-search-container"><input class="table-sort-search-input" type="text" placeholder="..."></div>');
         var searchInput   = search.find('.table-sort-search-input');
         var tbody         = table.find('tbody');
         var tbodyPosition = tbody.position();

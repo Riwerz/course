@@ -1,7 +1,7 @@
 {% load i18n %}
 {% autoescape off %}
 {% blocktrans %}
-    Здравствуйте, {{ user.username }}!
+    Здравствуйте!
     Пожалуйста, перейдите по ссылке для подтверждения регистрации,
 {% endblocktrans %}
 <a href=" http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" rel="noopener noreferrer" target="_blank">{% trans "Ссылка" %}</a>

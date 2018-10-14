@@ -7,7 +7,8 @@
            {% for conspect in conspects %}
                <div class="card text-center">
                     <div class="card-body">
-                        <a href="/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
+                        <a href="/{{ LANGUAGE_CODE }}/conspect_browse?pk={{ conspect.pk }}" title="{{ conspect.description }}">{{ conspect.title }}</a> <br/>
+                        <small>{{ conspect.get_subject }}</small> <br/>
                         <small>{% trans "Автор" %}: {{ conspect.author.get_full_name }}</small>
                     </div>
                </div>

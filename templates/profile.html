@@ -6,11 +6,8 @@
     <p class="h1 text-center">{{ user.get_full_name }}</p>
     <hr />
     <div class="container-fluid">
-        <p class="h3 text-center">{% trans "Личная информация" %}</p>
-    </div> <hr />
-    <div class="container-fluid">
         <p class="h3 text-center">{% trans "Мои конспекты" %}</p>
-        <a class="btn btn-primary" style="float: right;" href="conspect">{% trans "Добавить конспект" %}</a>
+        <a class="btn btn-primary" style="float: right;" href="/{{ LANGUAGE_CODE }}/conspect">{% trans "Добавить конспект" %}</a>
         <table class="table-sort table-sort-search">
             <thead>
                 <tr>

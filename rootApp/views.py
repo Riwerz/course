@@ -13,6 +13,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .forms import ConspectForm
 from taggit.models import Tag
 from .models import Conspect
+#from haystack.query import SearchQuerySet
 
 
 HOST_EMAIL = 'Riwerz2@yandex.ru'
@@ -85,7 +86,7 @@ def publish_conspect(request):
             conspect.publish()
             conspect.save()
             form.save_m2m()
-            return HttpResponseRedirect('profile')
+            return HttpResponseRedirect('/' + request.LANGUAGE_CODE + '/profile')
     else:
         form = ConspectForm()
     return render(request, 'conspect_create.html', {'form': form})
@@ -107,7 +108,7 @@ def conspect_edit(request, id):
         form = ConspectForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/profile')
+            return HttpResponseRedirect('/' + request.LANGUAGE_CODE + '/profile')
     else:
         form = ConspectForm(instance=post)
     return render(request, 'conspect_create.html', {'form': form})
@@ -136,4 +137,9 @@ def log_out(request):
 
 def tag(request, tag):
     conspects = Conspect.objects.filter(tags__name=tag)
-    return render(request, 'search.html', {'conspects': conspects, 'tag': tag})
+    return render(request, 'tag_search.html', {'conspects': conspects, 'tag': tag})
+
+
+def search(request):
+    conspects = SearchQuerySet().all()
+    return render(request, 'search/search.html', {'conspects': conspects})

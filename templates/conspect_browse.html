@@ -12,8 +12,7 @@
         <hr/>
         <span>{% trans "Теги" %}:</span>
         {% for tag in conspect.tags.all %}
-            <a href="/tag/{{ tag }}" class="badge badge-info">{{ tag }}</a>
+            <a href="/{{ LANGUAGE_CODE }}/tag/{{ tag }}" class="badge badge-info">{{ tag }}</a>
         {% endfor %}
-        <p class="h2 text-center">{% trans "Комментарии" %}</p>
-    </div>
+    </div> <br/>
 {% endblock %}
