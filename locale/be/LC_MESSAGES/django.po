@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-14 23:13+0300\n"
+"POT-Creation-Date: 2018-10-15 10:40+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,23 +19,23 @@ msgstr ""
 "10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
 "100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\course\settings.py:125
+#: .\course\settings.py:115
 msgid "Belarusian"
 msgstr "Беларуская"
 
-#: .\course\settings.py:126
+#: .\course\settings.py:116
 msgid "Russian"
 msgstr "Русский"
 
-#: .\course\settings.py:159
+#: .\course\settings.py:149
 msgid "Войти через VK"
 msgstr "Увайсцi праз VK"
 
-#: .\course\settings.py:160
+#: .\course\settings.py:150
 msgid "Войти через Facebook"
 msgstr "Увайсцi праз Facebook"
 
-#: .\course\settings.py:161
+#: .\course\settings.py:151
 msgid "Войти через Twitter"
 msgstr "Увайсцi праз Twitter"
 
@@ -43,23 +43,23 @@ msgstr "Увайсцi праз Twitter"
 msgid "Электронная почта"
 msgstr "Электронная пошта"
 
-#: .\rootApp\forms.py:10
+#: .\rootApp\forms.py:11
 msgid "Имя"
 msgstr "Iмя"
 
-#: .\rootApp\forms.py:11
+#: .\rootApp\forms.py:13
 msgid "Фамилия"
 msgstr "Фамiлiя"
 
-#: .\rootApp\forms.py:18
+#: .\rootApp\forms.py:21
 msgid "Заголовок"
 msgstr "Загаловак"
 
-#: .\rootApp\forms.py:20
+#: .\rootApp\forms.py:23
 msgid "Краткое описание"
 msgstr "Кароткае апiсанне"
 
-#: .\rootApp\forms.py:21
+#: .\rootApp\forms.py:24
 msgid "Текст"
 msgstr "Тэкст"
 
@@ -95,7 +95,27 @@ msgstr "ЛIНГВIСТЫКА"
 msgid "ЭКОНОМИКА"
 msgstr "ЭКАНОМIКА"
 
-#: .\templates\acc_active_email.html:3
+#: .\rootApp\views.py:131
+msgid "Адрес электронной почти подтверждён"
+msgstr "Адрас электроннай пошты пацверджаны"
+
+#: .\rootApp\views.py:133
+msgid "Недействительная ссылка"
+msgstr "Несапраўдная спасылка"
+
+#: .\templates\conspect\conspect_browse.html:13
+msgid "Теги"
+msgstr "Тэгi"
+
+#: .\templates\conspect\conspect_create.html:5
+msgid "Новый конспект"
+msgstr "Новы канспект"
+
+#: .\templates\conspect\conspect_create.html:17
+msgid "Сохранить"
+msgstr "Захаваць"
+
+#: .\templates\login\acc_active_email.html:3
 msgid ""
 "\n"
 "    Здравствуйте!\n"
@@ -105,41 +125,41 @@ msgstr ""
 "    Прывiтанне!\n"
 "    Калi ласка, перайдзiце па спасылцы для пацверджання рэгiстрацыi,\n"
 
-#: .\templates\acc_active_email.html:7
+#: .\templates\login\acc_active_email.html:7
 msgid "Ссылка"
 msgstr "Спасылка"
 
-#: .\templates\conspect_browse.html:13
-msgid "Теги"
-msgstr "Тэгi"
-
-#: .\templates\conspect_create.html:5
-msgid "Новый конспект"
-msgstr "Новы канспект"
-
-#: .\templates\conspect_create.html:17
-msgid "Сохранить"
-msgstr "Захаваць"
-
-#: .\templates\email_confirm.html:5
+#: .\templates\login\email_confirm.html:5
 msgid "Для завершения регистрации подтвердите адрес электронной почты"
 msgstr "Каб завяршыць рэгiстрацыю, пацвердзiце адрас электроннай пошты"
 
-#: .\templates\login.html:10
+#: .\templates\login\login.html:10
 msgid "Вход"
 msgstr "Уваход"
 
-#: .\templates\login.html:25
+#: .\templates\login\login.html:25
 msgid "Если вы здесь впервые"
 msgstr "Калi вы тут упершыню"
 
-#: .\templates\login.html:25
+#: .\templates\login\login.html:25
 msgid "зарегистрируйтесь"
 msgstr "зарэгiструйцеся"
 
-#: .\templates\login.html:27
+#: .\templates\login\login.html:27
 msgid "Войти"
 msgstr "Увайсцi"
+
+#: .\templates\login\signup.html:8
+msgid "Регистрация"
+msgstr "Рэгiстрацыя"
+
+#: .\templates\login\signup.html:24
+msgid "Зарегистрироваться"
+msgstr "Зарэгiстравацца"
+
+#: .\templates\login\signup.html:27
+msgid "Отмена"
+msgstr "Адмена"
 
 #: .\templates\mainpage.html:10
 msgid "Недавно загруженные конспекты"
@@ -202,21 +222,22 @@ msgstr "Рэдагаваць"
 msgid "Удалить"
 msgstr "Выдалiць"
 
-#: .\templates\signup.html:8
-msgid "Регистрация"
-msgstr "Рэгiстрацыя"
+#: .\templates\star_ratings\widget.html:5
+msgid "Средний рейтинг: "
+msgstr "Сярэднi рэйтынг: "
 
-#: .\templates\signup.html:24
-msgid "Зарегистрироваться"
-msgstr "Зарэгiстравацца"
+#: .\templates\star_ratings\widget.html:8
+msgid "Ваша оценка: "
+msgstr "Ваша ацэнка: "
 
-#: .\templates\signup.html:27
-msgid "Отмена"
-msgstr "Адмена"
+#: .\templates\star_ratings\widget.html:8
+msgid "Не оценено"
+msgstr "Не ацэнена"
+
+#: .\templates\star_ratings\widget.html:10
+msgid "Необходимо войти, чтобы оценить."
+msgstr "Неабходна увайсцi, каб ацанiць"
 
 #: .\templates\tag_search.html:5
 msgid "Конспекты с тегом"
 msgstr "Канспекты з тэгам"
-
-#~ msgid "Личная информация"
-#~ msgstr "Асабiстая iнфармацыя"

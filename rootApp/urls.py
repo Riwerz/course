@@ -12,7 +12,7 @@ urlpatterns = [
     path('conspect_entries', views.conspect_entries, name='conspect_entries'),
     path('conspect_delete', views.conspect_delete, name='conspect_delete'),
     path('conspect_edit/<id>/', views.conspect_edit, name='conspect_edit'),
-    path('tag/<tag>/', views.tag, name='tag'),
+    path('tag/<tag>/', views.load_conspects_by_tag, name='tag'),
     re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
             views.activate, name='activate')
 ]

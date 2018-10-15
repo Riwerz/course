@@ -6,33 +6,37 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
 from .tokens import account_activation_token
+from django.utils.translation import ugettext_lazy as gettext
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-from .forms import ConspectForm
 from taggit.models import Tag
 from .models import Conspect
-#from haystack.query import SearchQuerySet
+from .forms import ConspectForm
 
 
 HOST_EMAIL = 'Riwerz2@yandex.ru'
 
 
 def load_conspect(request):
-    return render(request, 'conspect_create.html')
+    return render(request, 'conspect/conspect_create.html')
 
 
 def load_mainpage(request):
-    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10],
-                                             'conspects_best': Conspect.objects.all().filter(ratings__isnull=False).order_by('-ratings__average')[:10],
-                                             'tags_all': Tag.objects.all()})
+    return render(request, 'mainpage.html', {
+        'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10],
+        'conspects_best': Conspect.objects.all().filter(ratings__isnull=False).order_by('-ratings__average')[:10],
+        'tags_all': Tag.objects.all()
+    })
 
 
 def conspect_browse(request):
-    return render(request, 'conspect_browse.html', {'conspect': Conspect.objects.get(pk=request.GET['pk'])})
+    return render(request, 'conspect/conspect_browse.html', {'conspect': Conspect.objects.get(pk=request.GET['pk'])})
 
 
+@login_required(login_url='/login')
 def load_profile(request):
     return render(request, 'profile.html', {'conspects': Conspect.objects.filter(author=request.user)})
 
@@ -46,10 +50,10 @@ def load_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return render(request, 'wrapper.html')
+                return load_mainpage(request)
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login/login.html', {'form': form})
 
 
 def load_signup(request):
@@ -63,7 +67,7 @@ def load_signup(request):
             user.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your blog account.'
-            message = render_to_string('acc_active_email.html', {
+            message = render_to_string('login/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
@@ -71,10 +75,10 @@ def load_signup(request):
             })
             to_email = form.cleaned_data.get('email')
             send_mail(mail_subject, message, HOST_EMAIL, [to_email], fail_silently=False)
-            return render(request, 'email_confirm.html')
+            return render(request, 'login/email_confirm.html')
     else:
         form = SignupForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'login/signup.html', {'form': form})
 
 
 def publish_conspect(request):
@@ -89,17 +93,17 @@ def publish_conspect(request):
             return HttpResponseRedirect('/' + request.LANGUAGE_CODE + '/profile')
     else:
         form = ConspectForm()
-    return render(request, 'conspect_create.html', {'form': form})
+    return render(request, 'conspect/conspect_create.html', {'form': form})
 
 
 def conspect_entries(request):
-    return render(request, 'conspect_table.html', {'conspects': Conspect.objects.filter(author=request.user)})
+    return render(request, 'conspect/conspect_table.html', {'conspects': Conspect.objects.filter(author=request.user)})
 
 
 def conspect_delete(request):
     id = request.POST['id']
     Conspect.objects.filter(pk=id).delete()
-    return JsonResponse({})
+    return JsonResponse({'id': id})
 
 
 def conspect_edit(request, id):
@@ -111,7 +115,7 @@ def conspect_edit(request, id):
             return HttpResponseRedirect('/' + request.LANGUAGE_CODE + '/profile')
     else:
         form = ConspectForm(instance=post)
-    return render(request, 'conspect_create.html', {'form': form})
+    return render(request, 'conspect/conspect_create.html', {'form': form})
 
 
 def activate(request, uidb64, token):
@@ -124,22 +128,17 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        message = 'Адрес электронной почти подтверждён'
+        message = gettext('Адрес электронной почти подтверждён')
     else:
-        message = 'Недействительная ссылка'
+        message = gettext('Недействительная ссылка')
     return HttpResponse(message)
 
 
 def log_out(request):
     logout(request)
-    return render(request, 'mainpage.html', {'conspects_latest': Conspect.objects.all().order_by('-published_date')[:10],
-                                             'conspects_best': Conspect.objects.all().filter(ratings__isnull=False).order_by('-ratings__average')[:10]})
+    return load_mainpage(request)
 
-def tag(request, tag):
+
+def load_conspects_by_tag(request, tag):
     conspects = Conspect.objects.filter(tags__name=tag)
     return render(request, 'tag_search.html', {'conspects': conspects, 'tag': tag})
-
-
-def search(request):
-    conspects = SearchQuerySet().all()
-    return render(request, 'search/search.html', {'conspects': conspects})

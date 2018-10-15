@@ -1,0 +1,14 @@
+{% extends "star_ratings/widget_base.html" %}
+{% load i18n %}
+{% block rating_detail %}
+    {% block rating_average %}
+    <div class="small star-ratings-rating-average">{% trans 'Средний рейтинг: ' %} <span class='star-ratings-rating-value'>{{ rating.average|floatformat:"-2" }}</span></div>
+    {% endblock rating_average %}
+    {% block rating_user %}
+    <div class="small star-ratings-rating-user">{% trans 'Ваша оценка: ' %} <span class='star-ratings-rating-value'>{% if user_rating %}{{ user_rating.score }}{% else %}{% trans 'Не оценено' %}{% endif %}</span></div>
+    {% if not user.is_authenticated and not anonymous_ratings and not read_only %}
+        <p class="small text-danger">{% trans 'Необходимо войти, чтобы оценить.' %}</p>
+    {% endif %}
+    {% endblock rating_user %}
+    <div class="small star-ratings-errors"></div>
+{% endblock rating_detail%}

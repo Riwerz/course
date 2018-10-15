@@ -1,24 +1,23 @@
 $(document).ready(function(){
-     const DEFAULTTHEME = "navbar navbar-expand-lg navbar-dark bg-dark";
-     let attr = localStorage.getItem('attr') || DEFAULTTHEME;
-     document.getElementById('navbar').setAttribute("class", attr);
-
-
     $.ajaxSetup({
         headers: { "X-CSRFToken": getCookie("csrftoken") }
     });
 
 
-    $('tbody').on('click', 'a[id^=delete]',function(event) {
+     const DEFAULTTHEME = "navbar navbar-expand-lg navbar-dark bg-dark";
+     let attr = localStorage.getItem('attr') || DEFAULTTHEME;
+     document.getElementById('navbar').setAttribute("class", attr);
+
+
+    $('tbody').on('click', 'a[id^=delete]',function() {
         let id = this.id.replace(/\D/g,'');
         $.ajax({
-             url: '/conspect_delete',
+             url: 'conspect_delete',
              type: 'POST',
              data: {'id': id},
              dataType: 'json',
              success: function(response){
                  if(response){
-
                     $('table tbody').html('').load('conspect_entries');
                  }
              }
@@ -46,15 +45,14 @@ $(document).ready(function(){
 function changeTheme(theme){
     if(theme){
         let navbar = document.getElementById('navbar');
+        let attr = "";
         if(theme === "M"){
             attr = "navbar navbar-expand-lg navbar-dark bg-dark";
-            localStorage.setItem('attr', attr);
-            navbar.setAttribute("class", attr);
         }
         else{
             attr = "navbar navbar-expand-lg navbar-dark bg-warning";
-            localStorage.setItem('attr', attr);
-            navbar.setAttribute("class", attr);
         }
+        localStorage.setItem('attr', attr);
+        navbar.setAttribute("class", attr);
     }
 }
